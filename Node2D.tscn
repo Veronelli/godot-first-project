@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 50 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 300 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 80 )
 
 [node name="Level" type="Node2D"]
 
@@ -14,21 +17,31 @@ extents = Vector2( 10, 300 )
 position = Vector2( 512, -50 )
 shape = SubResource( 1 )
 
-[node name="ParedSuperior" type="StaticBody2D" parent="ParedSuperior"]
-constant_linear_velocity = Vector2( 0, 600 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedSuperior/ParedSuperior"]
-position = Vector2( 512, 650 )
-shape = SubResource( 1 )
-
 [node name="ParedIzquierda" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda"]
 position = Vector2( -10, 300 )
 shape = SubResource( 2 )
 
-[node name="ParedDerecha" type="Area2D" parent="ParedIzquierda"]
+[node name="ParedSuperior2" type="StaticBody2D" parent="."]
+constant_linear_velocity = Vector2( 0, 600 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda/ParedDerecha"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedSuperior2"]
+position = Vector2( 512, 650 )
+shape = SubResource( 1 )
+
+[node name="ParedDerecha" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
 position = Vector2( 1034, 300 )
 shape = SubResource( 2 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Player"]
+margin_right = 20.0
+margin_bottom = 160.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( 9, 80 )
+shape = SubResource( 3 )
